@@ -1,7 +1,7 @@
-// API Keys from environment variables
-const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const UNSPLASH_API_KEY = import.meta.env.VITE_UNSPLASH_API_KEY;
-const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+const GEMINI_API_KEY = 'AIzaSyB3IPnR7Xq_e9EdMM7dVLiYTR4-F0yScpk';
+const UNSPLASH_API_KEY = '8OqCoB6ptQNpzEgZSdqg2ogyoen_2zARwfb_ItErd1Y';
+const WEATHER_API_KEY = '8bceb06cc2044ece885115050242411';
+
 
 // DOM Elements remain the same
 const cityInput = document.getElementById('city-input');
@@ -14,12 +14,14 @@ const eventSuggestions = document.getElementById('event-suggestions');
 const travelTips = document.getElementById('travel-tips');
 const planTripBtn = document.querySelector('.plan-trip-btn');
 
+
 // Event Listeners remain the same
 searchBtn.addEventListener('click', handleSearch);
 planTripBtn.addEventListener('click', () => {
     cityInput.classList.add('shake');
     setTimeout(() => cityInput.classList.remove('shake'), 820);
 });
+
 
 // Helper function to clean markdown formatting
 function cleanMarkdownFormatting(text) {
@@ -36,13 +38,16 @@ function cleanMarkdownFormatting(text) {
     return text;
 }
 
+
 async function handleSearch() {
     const city = cityInput.value.trim();
     if (!city) return;
 
+
     try {
         resultsSection.classList.remove('hidden');
         cityName.textContent = city;
+
 
         // Fetch all data concurrently
         const [weatherData, cityImageUrl] = await Promise.all([
@@ -50,11 +55,14 @@ async function handleSearch() {
             fetchCityImage(city)
         ]);
 
+
         // Update UI with weather data
         displayWeather(weatherData);
 
+
         // Set city image
         cityImage.src = cityImageUrl;
+
 
         // Fetch and display AI-generated content
         const weatherCondition = weatherData.current.condition.text;
@@ -63,11 +71,13 @@ async function handleSearch() {
             generateTravelTips(city)
         ]);
 
+
     } catch (error) {
         console.error('Error:', error);
         alert('Error fetching data. Please try again.');
     }
 }
+
 
 // Weather and Image fetch functions remain the same
 async function fetchWeather(city) {
@@ -76,12 +86,14 @@ async function fetchWeather(city) {
     return response.json();
 }
 
+
 async function fetchCityImage(city) {
     const response = await fetch(`https://api.unsplash.com/search/photos?query=${city}&client_id=${UNSPLASH_API_KEY}`);
     if (!response.ok) throw new Error('Image fetch failed');
     const data = await response.json();
     return data.results[0]?.urls.regular || 'default-city-image.jpg';
 }
+
 
 function displayWeather(data) {
     const weather = data.current;
@@ -92,6 +104,7 @@ function displayWeather(data) {
         <p>Wind: ${weather.wind_kph} km/h</p>
     `;
 }
+
 
 async function generateEventSuggestions(city, weatherCondition) {
     try {
@@ -115,6 +128,7 @@ async function generateEventSuggestions(city, weatherCondition) {
             })
         });
 
+
         const data = await response.json();
         if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
             const cleanedText = cleanMarkdownFormatting(data.candidates[0].content.parts[0].text);
@@ -127,6 +141,7 @@ async function generateEventSuggestions(city, weatherCondition) {
         eventSuggestions.innerHTML = '<p>Error generating suggestions. Please try again.</p>';
     }
 }
+
 
 async function generateTravelTips(city) {
     try {
@@ -149,6 +164,7 @@ async function generateTravelTips(city) {
                 }
             })
         });
+
 
         const data = await response.json();
         if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
