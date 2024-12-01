@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Travel Planner AI</div>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#about">About Us</a>
+            <a href="#plan-trip" class="plan-trip-btn">Plan Trip</a>
+        </div>
+    </nav>
+
+
+    <main>
+        <section id="search-section">
+            <h1>Discover Your Next Adventure</h1>
+            <div class="search-container">
+                <input type="text" id="city-input" placeholder="Enter a city name">
+                <button id="search-btn">Search</button>
+            </div>
+        </section>
+
+
+        <section id="results-section" class="hidden">
+            <div id="city-display">
+                <h2 id="city-name"></h2>
+                <img id="city-image" alt="City view">
+            </div>
+
+
+            <div class="info-grid">
+                <div class="weather-card">
+                    <h3>Weather</h3>
+                    <div id="weather-info"></div>
+                </div>
+
+
+                <div class="suggestions-card">
+                    <h3>Event Suggestions</h3>
+                    <div id="event-suggestions"></div>
+                </div>
+
+
+                <div class="tips-card">
+                    <h3>Travel Tips</h3>
+                    <div id="travel-tips"></div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="how-it-works">
+            <h2>How It Works</h2>
+            <p>Enter a city, and we'll provide real-time weather, tailored event suggestions, travel tips, and a stunning city image to inspire your trip.</p>
+        </section>
+
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>We simplify travel planning with AI-powered tools, helping you explore destinations effortlessly.</p>
+        </section>
+    </main>
+
+
+    <script src="app.js"></script>
+</body>
+</html>
