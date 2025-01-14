@@ -1,5 +1,5 @@
-const GEMINI_API_KEY = 'AIzaSyB3IPnR7Xq_e9EdMM7dVLiYTR4-F0yScpk';
-const UNSPLASH_API_KEY = '8OqCoB6ptQNpzEgZSdqg2ogyoen_2zARwfb_ItErd1Y';
+const GEMINI_API_KEY = 'AIzaSyTR4-k';
+const UNSPLASH_API_KEY = '8OqCoB6prd1Y';
 const WEATHER_API_KEY = '8bceb06cc2044ece885115050242411';
 
 
